@@ -1,4 +1,4 @@
 ## Preview
 ### QTile
 
-![qtile](preview.jpg)
+![qtile](preview.png)
