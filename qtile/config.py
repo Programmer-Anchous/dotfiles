@@ -43,8 +43,8 @@ file_manager = "nemo"
 # Key Binds
 keys = [
     # SCREENSHOTS
-    # Key([], "Print", lazy.spawn("scrot 'Screenshot-from-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
-    Key([], "Print", lazy.spawn("scrot 'Screenshot-from-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f Pictures/Screenshots'")),
+    # Key([], "Print", lazy.spawn("scrot 'Screenshot-from-%Y-%m-%d-%s_screenshot_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
+    Key([], "Print", lazy.spawn("scrot 'Screenshot-from-%Y-%m-%d-%s_screenshot_$wx$h.png' -e 'mv $f Pictures/Screenshots'")),
 
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
