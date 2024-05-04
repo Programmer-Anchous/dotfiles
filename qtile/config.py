@@ -200,33 +200,44 @@ keys = [
 ## Names of groups (workspaces)
 ## Format:
 ## ({<Name variants for> 'icon', 'full', 'minimal'}, (<Apps to open there by default>))
+# groups_raw = [
+#     ({'icon': 'λ', 'full': 'λ Terminal', 'minimal': 'TRM '},  ## Terminal
+#         [terminal, terminal, terminal]),
+
+#     ({'icon': '', 'full': ' Work', 'minimal': 'WOR '},  ## Work
+#         [""]),
+
+#     ({'icon': '', 'full': ' Code', 'minimal': 'COD '},  ## Code
+#         ["code"]),
+
+#     ({'icon': '', 'full': ' Web', 'minimal': 'WEB '},  ## Web/Browser
+#         [browser]),
+
+#     ({'icon': '', 'full': ' Social', 'minimal': 'PUB '},  ## Telegram
+#         ["telegram-desktop"]),
+
+#     ({'icon': '', 'full': ' Git', 'minimal': 'DIS '},  ## Discord
+#         [""]),
+
+#     ({'icon': '', 'full': ' free', 'minimal': 'FRF '},  ## free workspace
+#         [""]),
+
+#     ({'icon': '', 'full': ' free', 'minimal': 'FRS '},  ## free workspace
+#         [""]),
+
+#     ({'icon': '', 'full': ' free', 'minimal': r'FRT '},  ## free workspace
+#         [""])
+# ]
 groups_raw = [
-    ({'icon': 'λ', 'full': 'λ Terminal', 'minimal': 'TRM '},  ## Terminal
-        [terminal, terminal, terminal]),
-
-    ({'icon': '', 'full': ' Work', 'minimal': 'WOR '},  ## Work
-        [""]),
-
-    ({'icon': '', 'full': ' Code', 'minimal': 'COD '},  ## Code
-        ["code"]),
-
-    ({'icon': '', 'full': ' Web', 'minimal': 'WEB '},  ## Web/Browser
-        [browser]),
-
-    ({'icon': '', 'full': ' Social', 'minimal': 'PUB '},  ## Telegram
-        ["telegram-desktop"]),
-
-    ({'icon': '', 'full': ' Git', 'minimal': 'DIS '},  ## Discord
-        [""]),
-
-    ({'icon': '', 'full': ' free', 'minimal': 'FRF '},  ## free workspace
-        [""]),
-
-    ({'icon': '', 'full': ' free', 'minimal': 'FRS '},  ## free workspace
-        [""]),
-
-    ({'icon': '', 'full': ' free', 'minimal': r'FRT '},  ## free workspace
-        [""])
+    ({'icon': '', 'full': '', 'minimal': 'TRM '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'WOR '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'COD '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'WEB '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'PUB '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'DIS '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'STM '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'GAM '}, [""]),
+    ({'icon': '', 'full': '', 'minimal': 'FRE '}, [""]),
 ]
 
 mode = 'minimal'

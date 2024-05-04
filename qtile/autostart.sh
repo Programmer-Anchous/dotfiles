@@ -14,13 +14,20 @@ nm-applet &
 # set up keyboard and mouse
 setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle"
 xmodmap -e "pointer = 1 2 3"
-xinput --set-prop "PixArt USB Optical Mouse" "libinput Accel Speed" -0.7
+xinput --set-prop "PixArt USB Optical Mouse" "libinput Accel Speed" -0.6
 
 # remove bip sound
 xset b off
 
 # keyboard autorepeat delay rate
 xset r rate 300 25
+
+# turn off Display Power Management Service (DPMS)
+xset -dpms
+setterm -blank 0 -powerdown 0
+
+# turn off black Screensaver
+xset s off
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
 # 1. Uncomment to restore last saved wallpaper
