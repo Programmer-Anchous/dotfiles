@@ -11,6 +11,7 @@ source $OMF_PATH/init.fish
 
 ## Env vars
 export LC_ALL=en_US.utf8
+export EDITOR=nvim
 
 # Manpager
 if command -vq bat

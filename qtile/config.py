@@ -27,30 +27,31 @@
 
 import os
 import subprocess
-from libqtile import qtile
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
-from libqtile import layout, bar, widget, hook #, guess_terminal
-from libqtile.command import lazy
-from typing import List  # noqa: F401
 
+from libqtile import qtile
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile import layout, bar, hook
+from libqtile.lazy import lazy
 
 mod = "mod4"
 terminal = "alacritty"
 browser = "firefox"
 file_manager = "nemo"
-# terminal = guess_terminal() # Needs import ^
 
 # Key Binds
 keys = [
     # SCREENSHOTS
-    # Key([], "Print", lazy.spawn("scrot 'Screenshot-from-%Y-%m-%d-%s_screenshot_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
-    Key([], "Print", lazy.spawn("scrot 'Screenshot-from-%Y-%m-%d-%s_screenshot_$wx$h.png' -e 'mv $f Pictures/Screenshots'")),
+    Key([], "Print", lazy.spawn(
+        "scrot 'Screenshot-from-%Y-%m-%d-%s_screenshot_$wx$h.png' -e 'mv $f Pictures/Screenshots'")),
 
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    Key([mod, "control"], "h", lazy.spawn(f"{terminal} -e htop"), desc="Run htop in the chosen terminal"),
+    Key([mod, "control"], "h", lazy.spawn(
+        f"{terminal} -e htop"), desc="Run htop in the chosen terminal"),
+    Key([mod, "control"], "b", lazy.spawn(
+        f"{terminal} -e btop"), desc="Run btop in the chosen terminal"),
 
-    ### The essentials
+    # The essentials
     Key([mod], "Return",
         lazy.spawn(terminal + " -e fish"),
         desc='Launches My Terminal'
@@ -64,21 +65,21 @@ keys = [
         desc='FireFox'
         ),
 
-    ### Volume
+    # Volume
     Key([mod, "control"], "u",
-        lazy.spawn("amixer -q sset Master 5%+"),
+        lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),
         desc='upper volume'
         ),
     Key([mod, "control"], "l",
-        lazy.spawn("amixer -q sset Master 5%-"),
+        lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
         desc='lower volume'
         ),
     Key([mod, "control"], "m",
-        lazy.spawn("amixer -q sset Master toggle"),
+        lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
         desc='mute/unmute'
         ),
 
-    ### Websites
+    # Websites
     # phind.com
     Key([mod], "p",
         lazy.spawn(browser + " phind.com"),
@@ -98,9 +99,9 @@ keys = [
         desc='open phind.com'
         ),
 
-    ### Applications
+    # Applications
     Key([mod], "e",
-        lazy.spawn(file_manager),
+        lazy.spawn(terminal + " -e ranger"),
         desc='File manager'
         ),
     Key([mod], "d",
@@ -108,8 +109,8 @@ keys = [
         desc="Run app launcher (rofi here)"
         ),
 
-    ### System shortcuts
-    Key([mod, "shift"], "c",
+    # System shortcuts
+    Key([mod], "c",
         lazy.window.kill(),
         desc='Kill active window'
         ),
@@ -121,16 +122,7 @@ keys = [
         lazy.shutdown(),
         desc='Shutdown Qtile'
         ),
-    ### Treetab controls
-    Key([mod, "shift"], "h",
-        lazy.layout.move_left(),
-        desc='Move up a section in treetab'
-        ),
-    Key([mod, "shift"], "l",
-        lazy.layout.move_right(),
-        desc='Move down a section in treetab'
-        ),
-    ### Window controls
+    # Window controls
     Key([mod], "j",
         lazy.layout.down(),
         desc='Move focus down in current stack pane'
@@ -171,6 +163,7 @@ keys = [
         desc='toggle window between minimum and maximum sizes'
         ),
 
+    # layout settings
     Key([mod, "shift"], "f",
         lazy.window.toggle_floating(),
         desc='toggle floating'
@@ -179,99 +172,59 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc='toggle fullscreen'
         ),
-    ### Stack controls
-    Key([mod, "shift"], "Tab",
-        lazy.layout.rotate(),
-        lazy.layout.flip(),
-        desc='Switch which side main pane occupies (XmonadTall)'
-        ),
     Key([mod], "space",
-        lazy.layout.next(),
-        desc='Switch window focus to other pane(s) of stack'
-        ),
-    Key([mod, "shift"], "space",
-        lazy.layout.toggle_split(),
-        desc='Toggle between split and unsplit sides of stack'
-        ),
+        lazy.layout.flip()
+        )
 ]
 
-
-### Groups ###
-## Names of groups (workspaces)
-## Format:
-## ({<Name variants for> 'icon', 'full', 'minimal'}, (<Apps to open there by default>))
-# groups_raw = [
-#     ({'icon': 'λ', 'full': 'λ Terminal', 'minimal': 'TRM '},  ## Terminal
-#         [terminal, terminal, terminal]),
-
-#     ({'icon': '', 'full': ' Work', 'minimal': 'WOR '},  ## Work
-#         [""]),
-
-#     ({'icon': '', 'full': ' Code', 'minimal': 'COD '},  ## Code
-#         ["code"]),
-
-#     ({'icon': '', 'full': ' Web', 'minimal': 'WEB '},  ## Web/Browser
-#         [browser]),
-
-#     ({'icon': '', 'full': ' Social', 'minimal': 'PUB '},  ## Telegram
-#         ["telegram-desktop"]),
-
-#     ({'icon': '', 'full': ' Git', 'minimal': 'DIS '},  ## Discord
-#         [""]),
-
-#     ({'icon': '', 'full': ' free', 'minimal': 'FRF '},  ## free workspace
-#         [""]),
-
-#     ({'icon': '', 'full': ' free', 'minimal': 'FRS '},  ## free workspace
-#         [""]),
-
-#     ({'icon': '', 'full': ' free', 'minimal': r'FRT '},  ## free workspace
-#         [""])
-# ]
-groups_raw = [
-    ({'icon': '', 'full': '', 'minimal': 'TRM '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'WOR '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'COD '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'WEB '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'PUB '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'DIS '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'STM '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'GAM '}, [""]),
-    ({'icon': '', 'full': '', 'minimal': 'FRE '}, [""]),
-]
-
-mode = 'minimal'
-
-## Select only suitable name variants
-group_names = [group[0][mode] for group in groups_raw]
-
-# Some Symbols: '  λ    '
-
-## Generate a qtile-readable thing out of this 'nonsense' ;)
-groups = []
-for index, name in enumerate(group_names):
-    groups.append( Group( name, matches=[Match(groups_raw[index][1])] ) )
-
-
-for num, group in enumerate(groups, 1):
-    name = group.name
-
-    keys.extend([
-        # Switch to group
+# Add key bindings to switch VTs in Wayland.
+# We can't check qtile.core.name in default config as it is loaded before qtile is started
+# We therefore defer the check until the key binding is run by using .when(func=...)
+for vt in range(1, 8):
+    keys.append(
         Key(
-            [mod], str(num), lazy.group[name].toscreen(),
-            desc=f"Switch to group {name}"
+            ["control", "mod1"],
+            f"f{vt}",
+            lazy.core.change_vt(vt).when(
+                func=lambda: qtile.core.name == "wayland"),
+            desc=f"Switch to VT{vt}",
+        )
+    )
+
+groups_names = [
+    {'name': 'TRM '},
+    {'name': 'WOR '},
+    {'name': 'COD '},
+    {'name': 'WEB '},
+    {'name': 'PUB ', 'spawn': ['telegram-desktop']},
+    {'name': 'DIS '},
+    {'name': 'STM '},
+    {'name': 'GAM '},
+    {'name': 'FRE '}
+]
+groups = [Group(**args) for args in groups_names]
+
+for num, i in enumerate(groups, start=1):
+    keys.extend(
+        [
+            # mod + group number = switch to group
+            Key(
+                [mod],
+                str(num),
+                lazy.group[i.name].toscreen(),
+                desc="Switch to group {}".format(i.name),
             ),
+            # mod + shift + group number = switch to & move focused window to group
+            Key(
+                [mod, "shift"],
+                str(num),
+                lazy.window.togroup(i.name, switch_group=False),
+                desc="Switch to & move focused window to group {}".format(
+                    i.name),
+            ),
+        ]
+    )
 
-        # Move focused window to group
-        Key(
-            [mod, "shift"], str(num), lazy.window.togroup(name, switch_group=False),
-            desc=f"Switch to & move focused window to group {name}"
-            )
-    ])
-
-
-## Layouts
 layout_theme = {"border_width": 2,
                 "margin": 5,
                 "border_focus": "#A7C080",
@@ -281,46 +234,11 @@ layout_theme = {"border_width": 2,
                 }
 
 layouts = [
-    #     layout.Bsp(**{
-    #     "border_width": 1,
-    #     "margin": 5,
-    #     "border_focus": "#689d6a",
-    #     "border_normal": "#928374",
-    #     "border_on_single": True,
-    # }),
-    # layout.RatioTile(**{
-    #     "border_width": 1,
-    #     "margin": 5,
-    #     "border_focus": "#689d6a",
-    #     "border_normal": "#928374",
-    # }),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    # layout.Stack(num_stacks=2),
-    # layout.RatioTile(**layout_theme),
-    layout.Floating(**layout_theme),
-    layout.TreeTab(
-         font = "Ubuntu",
-         fontsize = 10,
-         sections = ["FIRST", "SECOND", "THIRD", "FOURTH"],
-         section_fontsize = 10,
-         border_width = 2,
-         bg_color = "1c1f24",
-         active_bg = "c678dd",
-         active_fg = "000000",
-         inactive_bg = "689d6a", #"a9a1e1",
-         inactive_fg = "1c1f24",
-         padding_left = 0,
-         padding_x = 0,
-         padding_y = 5,
-         section_top = 10,
-         section_bottom = 20,
-         level_shift = 8,
-         vspace = 3,
-         panel_width = 200
-         )
+    layout.Floating(**layout_theme)
 ]
-
+floating_layout = layout.Floating(**layout_theme)
 
 widget_defaults = {
     "font": 'Ubuntu Mono',
@@ -330,10 +248,9 @@ widget_defaults = {
 
 extension_defaults = widget_defaults.copy()
 widgetSep_defaults = {
-        'linewidth': 0,
-        'padding': 10
+    'linewidth': 0,
+    'padding': 10
 }
-
 
 window_offset = 1
 screens = [Screen(
@@ -360,13 +277,18 @@ cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-# Loading apps on startup (See `autostart.sh`) 
-@hook.subscribe.startup_once
-def start_once():
-    home = os.path.expanduser('~')
-    subprocess.call([f'{home}/.config/qtile/autostart.sh'])
 
-# XXX: Gasp! We [Devs] are lying here. In fact, nobody really uses or cares about this
+# When using the Wayland backend, this can be used to configure input devices.
+# wl_input_rules = None
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    hom = os.path.expanduser('~/.config/qtile/xsettings.sh')
+    subprocess.Popen([home, hom])
+
+
+# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
 # this string if your java app doesn't work correctly. We may as well just lie

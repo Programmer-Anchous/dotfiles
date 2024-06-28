@@ -34,8 +34,3 @@ vim.opt.colorcolumn = "80"
 
 vim.g.everforest_enable_italic = 1
 vim.g.rainbow_active = 1
-vim.g.indentLine_setColors = 0
-vim.g.indentLine_char_list = {"▏"}
-
--- vim.g.indentLine_leadingSpaceEnabled = 1
--- vim.g.indentLine_leadingSpaceChar = '·'

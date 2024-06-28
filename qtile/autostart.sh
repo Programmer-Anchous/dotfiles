@@ -9,12 +9,12 @@ dunst &
 nm-applet &
 
 # polkit agent
-/usr/libexec/polkit-gnome-authentication-agent-1 &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # set up keyboard and mouse
 setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle"
-xmodmap -e "pointer = 1 2 3"
-xinput --set-prop "PixArt USB Optical Mouse" "libinput Accel Speed" -0.6
+# xmodmap -e "pointer = 1 2 3"
+# xinput --set-prop "PixArt USB Optical Mouse" "libinput Accel Speed" -0.6
 
 # remove bip sound
 xset b off

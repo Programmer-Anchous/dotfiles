@@ -1,0 +1,60 @@
+{
+    "ipc": true,
+
+    "position": "top",
+    "layer": "top", // Display on top of everything (except for fullscreen apps)
+
+    "height": 26,
+    "width": 1906,
+    "margin-top": 5,
+
+    "spacing": 10, // Gaps between modules
+
+    "font": "", // Set in theme file
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["tray"],
+    "modules-right": ["pulseaudio", "hyprland/language", "clock"],
+
+    // Modules configuration
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "O"
+        },
+        "sort-by-number": true
+    },
+
+    "pulseaudio": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{volume}",
+        "format-muted": "{volume}",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+
+    "hyprland/language": {
+        "format": "{short}"
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+        "timezone": "Europe/Moscow",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M  %d.%m.%Y  %A}",
+    },
+}

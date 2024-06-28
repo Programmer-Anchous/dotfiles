@@ -4,9 +4,9 @@ local opts = {
 }
 
 -- tab
-vim.keymap.set('n', 'th', vim.cmd.tabfirst)
+vim.keymap.set('n', 'tj', vim.cmd.tabfirst)
 vim.keymap.set('n', 'tk', vim.cmd.tabnext)
-vim.keymap.set('n', 'tj', vim.cmd.tabprev)
+vim.keymap.set('n', 'th', vim.cmd.tabprev)
 vim.keymap.set('n', 'tl', vim.cmd.tablast)
 vim.keymap.set('n', 'tt', vim.cmd.tabedit)
 vim.keymap.set('n', 'tn', vim.cmd.tabnew)

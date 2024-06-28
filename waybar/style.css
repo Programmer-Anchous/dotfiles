@@ -1,0 +1,49 @@
+@define-color black #293136;
+@define-color white #D3C6AA;
+@define-color green #A7C080;
+@define-color pure #7A8478;
+
+* {
+    border-radius: 8px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 16px;
+}
+
+window#waybar {
+    background: @black;
+    color: @white;
+}
+
+#workspaces button {
+    padding: 0 13px;
+    margin: 0 0px;
+    color: @white;
+}
+
+#workspaces button:hover {
+  background: #424347;
+}
+
+#workspaces button.active {
+    background: @green;
+    color: @black;
+}
+
+#clock, #network, #pulseaudio {
+    padding: 0 6px;
+    margin: 0 5px;
+}
+
+#clock {
+    padding: 0 6px;
+    color: @white;
+}
+
+#pulseaudio {
+    color: @white;
+}
+
+#pulseaudio.muted {
+    color: @pure;
+}
