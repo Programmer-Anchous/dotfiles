@@ -1,4 +1,9 @@
 ## Preview
+
+### Hyprland
+
+![hyprland](hyprland_preview.png)
+
 ### QTile
 
-![qtile](preview.png)
+![qtile](qtile_preview.png)
