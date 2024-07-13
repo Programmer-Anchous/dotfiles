@@ -4,14 +4,14 @@ local opts = {
 }
 
 -- tab
-vim.keymap.set('n', 'tj', vim.cmd.tabfirst)
-vim.keymap.set('n', 'tk', vim.cmd.tabnext)
-vim.keymap.set('n', 'th', vim.cmd.tabprev)
-vim.keymap.set('n', 'tl', vim.cmd.tablast)
-vim.keymap.set('n', 'tt', vim.cmd.tabedit)
-vim.keymap.set('n', 'tn', vim.cmd.tabnew)
-vim.keymap.set('n', 'tm', vim.cmd.tabm)
-vim.keymap.set('n', 'td', vim.cmd.tabclose)
+vim.keymap.set('n', '<leader>tj', vim.cmd.tabfirst)
+vim.keymap.set('n', '<leader>tl', vim.cmd.tabnext)
+vim.keymap.set('n', '<leader>th', vim.cmd.tabprev)
+vim.keymap.set('n', '<leader>tk', vim.cmd.tablast)
+vim.keymap.set('n', '<leader>tt', vim.cmd.tabedit)
+vim.keymap.set('n', '<leader>tn', vim.cmd.tabnew)
+vim.keymap.set('n', '<leader>tm', vim.cmd.tabm)
+vim.keymap.set('n', '<leader>td', vim.cmd.tabclose)
 
 -- windows
 vim.keymap.set('n', 'C-ws', vim.cmd.split, opts)

@@ -90,4 +90,5 @@ return require('packer').startup(function(use)
             require("better_escape").setup()
         end,
     }
+    use('simonmclean/triptych.nvim')
 end)
