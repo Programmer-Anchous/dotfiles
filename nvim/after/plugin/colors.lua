@@ -7,7 +7,7 @@ vim.o.background = 'dark'
 vim.g.everforest_background = 'hard'
 vim.g.everforest_transparent_background = 2
 
-function ColorMyPencils(color)
+function ApplyColorscheme(color)
 	color = color or "everforest"
 	vim.cmd.colorscheme(color)
 end
@@ -25,5 +25,5 @@ function ElementsColors()
     vim.api.nvim_set_hl(0, 'Visual', { bg='#3a464c' })
 end
 
-ColorMyPencils()
+ApplyColorscheme()
 ElementsColors()
