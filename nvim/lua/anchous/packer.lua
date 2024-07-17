@@ -91,4 +91,5 @@ return require('packer').startup(function(use)
         end,
     }
     use('simonmclean/triptych.nvim')
+    use('vim-scripts/restore_view.vim')
 end)

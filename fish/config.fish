@@ -11,3 +11,8 @@ set fish_color_param brgreen
 set fish_color_end 'A7C080'
 
 # set fish_prompt_pwd_dir_length 0
+
+bind \cl accept-autosuggestion
+bind \ce clear-screen
+bind \ck history-search-backward
+bind \cj history-search-forward

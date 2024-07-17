@@ -1,5 +1,6 @@
 require('code_runner').setup({
     filetype = {
+        lua = "lua",
         java = {
             "cd $dir &&",
             "javac $fileName &&",
