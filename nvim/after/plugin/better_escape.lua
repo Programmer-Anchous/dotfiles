@@ -18,8 +18,8 @@ require("better_escape").setup {
         },
         t = {
             j = {
-                k = "<Esc>",
-                j = "<Esc>",
+                k = "<C-\\><C-N>",
+                j = "<C-\\><C-N>",
             },
         },
         v = {

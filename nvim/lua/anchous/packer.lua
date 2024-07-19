@@ -83,6 +83,7 @@ return require('packer').startup(function(use)
         end
     }
     use('CRAG666/code_runner.nvim')
+    use('CRAG666/betterTerm.nvim')
     use('lukas-reineke/indent-blankline.nvim')
     use {
         "max397574/better-escape.nvim",

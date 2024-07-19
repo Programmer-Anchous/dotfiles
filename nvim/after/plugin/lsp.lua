@@ -56,8 +56,8 @@ cmp.setup({
                 cmp.complete()
             end
         end),
-        ["<C-j>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-k>"] = cmp.mapping.scroll_docs(4),
+        ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-j>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.locally_jumpable(1) then
