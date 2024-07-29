@@ -19,7 +19,7 @@ require('code_runner').setup({
                 "g++ *.cpp -o", -- "g++ $fileName -o"
                 "/tmp/$fileNameWithoutExt",
                 -- compiler flags
-                "-ggdb -pedantic-errors -Werror -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++23",
+                "-ggdb -pedantic-errors -Werror -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Wshadow -std=c++23",
             }
             local cpp_exec = {
                 "&& /tmp/$fileNameWithoutExt &&",
