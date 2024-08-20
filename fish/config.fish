@@ -14,5 +14,5 @@ set fish_color_end '#A7C080'
 
 bind \cl accept-autosuggestion
 bind \ce clear-screen
-bind \ck history-search-backward
-bind \cj history-search-forward
+bind \cp history-search-backward
+bind \cn history-search-forward

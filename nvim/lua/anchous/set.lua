@@ -34,3 +34,5 @@ vim.opt.colorcolumn = "80"
 
 vim.g.everforest_enable_italic = 1
 vim.g.rainbow_active = 1
+
+vim.opt.conceallevel = 1

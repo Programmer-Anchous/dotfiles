@@ -1,6 +1,12 @@
 # [shell]
 # program = "/usr/bin/fish"
 
+[keyboard]
+bindings = [
+{ key="k", mods="Control", action="ScrollHalfPageUp"},
+{ key="j", mods="Control", action="ScrollHalfPageDown"}
+]
+
 [mouse]
 hide_when_typing = true
 
