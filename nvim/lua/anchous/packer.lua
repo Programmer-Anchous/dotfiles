@@ -102,4 +102,18 @@ return require('packer').startup(function(use)
         end,
         ft = { "markdown" },
     })
+    use('mfussenegger/nvim-dap')
+    use {
+        'mfussenegger/nvim-dap-python',
+        config = function()
+            require("dap-python").setup("python3")
+        end,
+    }
+    use {
+        'leoluz/nvim-dap-go',
+        config = function()
+            require('dap-go').setup()
+        end,
+    }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
 end)

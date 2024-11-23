@@ -1,13 +1,29 @@
 local lsp_zero = require('lsp-zero')
 
-lsp_zero.preset('recommended')
-
 lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({
         buffer = bufnr,
         exclude = { '<F2>' },
     })
 end)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
+
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    end,
+})
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -16,7 +32,7 @@ require('mason-lspconfig').setup({
     ensure_installed = {
         'clangd',
         'pylsp',
-        'tsserver',
+        'ts_ls',
         'rust_analyzer',
         'lua_ls',
         -- 'pyright'
@@ -52,7 +68,7 @@ cmp.setup({
         { name = "buffer" },   -- text within the current buffer
         { name = "path" },     -- file system paths
     }),
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
         ['<C-y>'] = cmp.mapping.confirm({ select = false }),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<Up>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
@@ -71,8 +87,8 @@ cmp.setup({
                 cmp.complete()
             end
         end),
-        ["<C-k>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-j>"] = cmp.mapping.scroll_docs(4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.locally_jumpable(1) then
@@ -89,7 +105,7 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-    },
+    }),
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
