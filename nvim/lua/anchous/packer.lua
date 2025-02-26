@@ -116,4 +116,7 @@ return require('packer').startup(function(use)
         end,
     }
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
+    use {
+        "ray-x/lsp_signature.nvim",
+    }
 end)

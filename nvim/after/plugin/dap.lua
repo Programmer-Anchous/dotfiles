@@ -24,16 +24,6 @@ dap.listeners.before.event_exited.dapui_config = function()
     dapui.close()
 end
 
-require("dap").adapters.codelldb = {
-	type = "server",
-	port = "${port}",
-	executable = {
-		command = "codelldb",
-		args = { "--port", "${port}" },
-	},
-}
-
-dap.configurations.cpp = dap.configurations.c
 
 require('dapui').setup {
     controls = {
