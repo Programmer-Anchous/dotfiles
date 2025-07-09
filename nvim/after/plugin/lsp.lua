@@ -57,6 +57,14 @@ end
 
 vim.keymap.set('n', '<leader>qf', quickfix, opts)
 
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
+
 -- auto completion
 local cmp = require('cmp')
 local luasnip = require('luasnip')
