@@ -2,27 +2,31 @@
 @define-color white #D3C6AA;
 @define-color green #A7C080;
 @define-color pure #7A8478;
+@define-color yellow #EABD5F;
+@define-color red #e67e80;
 
 * {
-    border-radius: 8px;
+    border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 window#waybar {
     background: @black;
     color: @white;
+    border-bottom: 2 solid #495156;
 }
 
 #workspaces button {
-    padding: 0 13px;
+    border-bottom: 2 solid #495156;
+    padding: 0 17px;
     margin: 0 0px;
     color: @white;
 }
 
 #workspaces button:hover {
-  background: #424347;
+    background: #424347;
 }
 
 #workspaces button.active {
@@ -30,14 +34,19 @@ window#waybar {
     color: @black;
 }
 
-#clock, #network, #pulseaudio {
+#clock, #network, #pulseaudio
+#network {
     padding: 0 6px;
     margin: 0 5px;
 }
 
 #clock {
-    padding: 0 6px;
-    color: @white;
+    margin: 0 16 0 0px;
+}
+
+#language {
+    padding: 0 9px;
+    margin: 0 5px;
 }
 
 #pulseaudio {

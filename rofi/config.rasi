@@ -17,4 +17,4 @@ configuration {
     terminal: "alacritty";
 }
 
-@theme "anchous_everforest"
+@theme "everforest_fullscreen"
